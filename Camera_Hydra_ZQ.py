@@ -18,10 +18,10 @@ def initial_camera():
     # camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
     # 使用下面的设置，会有一个 warning
     time.sleep(3)
-    cv2.VideoCapture(1).release()
+    cv2.VideoCapture(0).release()
     time.sleep(3)
     camera = cv2.VideoCapture()
-    camera.open(1, cv2.CAP_DSHOW)
+    camera.open(0, cv2.CAP_DSHOW)
     time.sleep(3)
 
     codec = 0x47504A4D  # MJPG
@@ -94,7 +94,7 @@ def check_united_image_bios_version(camera):
             # gray = cv2.cvtColor(to_gray, cv2.COLOR_BGR2GRAY)
             # t, T_threshold = cv2.threshold(gray, 12, 255, cv2.THRESH_BINARY_INV)
 
-            to_gray_1 = to_gray[173:220, 730:1150]
+            to_gray_1 = to_gray[210:260, 730:1150]
             # cv2.imshow("EE1", to_gray_1)
             # cv2.waitKey()
 
@@ -121,11 +121,11 @@ def check_united_image_bios_version(camera):
             string4 = string3.replace('0', '')
             string = string4.replace('O', '')
             print(string)
-            if "hong" in string:
+            if "9" in string and "2" in string:
                 BIOS_upgrade_result = True
                 print(string)
                 logging.debug(':BIOS_version:{}!'.format(string))
-                print("Upgrade UI BIOS successfully")
+                print("Upgrade ZQ-06 BIOS successfully")
             else:
                 BIOS_upgrade_result = False
                 print(string)
